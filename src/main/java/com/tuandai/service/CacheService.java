@@ -1,4 +1,4 @@
-package com.tuandai.mybatis;
+package com.tuandai.service;
 
 import com.tuandai.entiy.User;
 import org.slf4j.Logger;
@@ -54,8 +54,9 @@ public class CacheService {
      * @param user
      */
     @CachePut(value = "user",key = "T(String).valueOf(#user.id)")
-    public void insertUsers(User user) {
+    public User insertUsers(User user) {
         logger.info("执行了createUser的方法");
+        return user;
     }
 
     /**

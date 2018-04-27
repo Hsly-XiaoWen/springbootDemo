@@ -1,6 +1,7 @@
 package com.tuandai.mybatis;
 
 import com.tuandai.entiy.User;
+import com.tuandai.service.CacheService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
