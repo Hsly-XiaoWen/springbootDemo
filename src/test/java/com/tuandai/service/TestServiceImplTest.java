@@ -1,7 +1,7 @@
 package com.tuandai.service;
 
 import com.tuandai.AppTest;
-import com.tuandai.invocationHandler.TestInvocationHandler;
+import com.tuandai.invocation.TestInvocationHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

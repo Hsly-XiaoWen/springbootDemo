@@ -1,5 +1,6 @@
 package com.tuandai.test;
 
+import com.tuandai.controller.HelloController;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;

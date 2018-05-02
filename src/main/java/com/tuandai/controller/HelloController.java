@@ -1,5 +1,6 @@
-package com.tuandai.test;
+package com.tuandai.controller;
 
+import com.tuandai.test.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author 肖文
- * @Description ${DESCRIPTION}
  * @date 2018/3/30 11:22
  */
 @RestController
