@@ -1,4 +1,4 @@
-package com.tuandai;
+package com.tuandai.redis;
 
 /**
  * Created by 肖文 on 2018/4/26
