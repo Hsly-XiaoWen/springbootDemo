@@ -1,0 +1,39 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+spring:
+  redis:
+    host: 118.89.29.12
+    port: 6379
+    database: 7
+    password: admin
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 5000
+  datasource:
+    name: mysqlDB
+    url: jdbc:mysql://localhost:3306/mybatis
+    username: root
+    password: xw06025615
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+logging:
+  level:
+    com:
+      tuandai:
+        dao: DEBUG

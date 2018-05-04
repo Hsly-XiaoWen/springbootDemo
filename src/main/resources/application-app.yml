@@ -1,0 +1,40 @@
+tdw:
+  gateway:
+    routes:
+      - interfaces: [activity_getcalcresultrecommend,home_getnewslist,home_introduce,
+                     home_getnewsinfo,home_activechannel,home_goexperiencestate,mywealth_getuserprize,
+                     mywealth_gettbx,mywealth_gettbxalllist,mywealth_gettbxlist,mywealth_getaddress,mywealth_getaddorder,
+                     mywealth_viewlogistics]
+        reqDir: p2p
+        serverId: /app-synthetically
+        logDir: synthetically
+      - interfaces: [mywealth_gettbx,mywealth_gettbxalllist,mywealth_gettbxlist,mywealth_getaddress,mywealth_getaddorder,
+                    mywealth_getuserprize,mywealth_viewlogistics]
+        reqDir: user
+        serverId: /app-synthetically
+        logDir: synthetically
+      - interfaces:
+        reqDir: synthetically
+        serverId: /app-synthetically
+        logDir: synthetically
+
+      - interfaces: [user_issignedtoday]
+        reqDir: p2p
+        serverId: /app-sign-core
+        logDir: sign
+      - interfaces:
+        reqDir: sign
+        serverId: /app-sign-core
+        logDir: sign
+
+
+      - interfaces:
+        reqDir: appuser
+        serverId: /app-user
+        logDir: appuser
+      - interfaces: [userlogreg_login,userlogreg_reg,userlogreg_checkfindpwdcode,user_userdetailinfo,user_updateuserdetail,
+                    user_headimage,user_fundinfo,user_personalinfo,user_evaluatsubject,user_evaluatscoresumit,
+                    user_evaluatresult,user_bankcardunbundleapplyinfo,user_applybankcardunbundle]
+        reqDir: user
+        serverId: /app-user
+        logDir: appuser
