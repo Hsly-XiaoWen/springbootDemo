@@ -1,5 +1,16 @@
 server:
   port: 8888
+logging:
+  level:
+    com:
+      tuandai: DEBUG
 spring:
   profiles:
     include: db,app
+  cache:
+    type: caffeine
+    cache-names:
+      - user
+      - person
+    caffeine:
+      spec: initialCapacity=50,maximumSize=500,expireAfterWrite=10s,refreshAfterWrite=5s

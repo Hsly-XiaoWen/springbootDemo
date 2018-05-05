@@ -31,9 +31,3 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-
-logging:
-  level:
-    com:
-      tuandai:
-        dao: DEBUG

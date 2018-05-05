@@ -3,6 +3,7 @@ package com.tuandai.service;
 import com.tuandai.entiy.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,6 +17,9 @@ public class CacheService {
 
     private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
 
+    @Autowired
+    private TestInterface testService;
+
     /**
      *
      * @param id
@@ -23,8 +27,15 @@ public class CacheService {
      */
     @Cacheable(value = "user", key = "T(String).valueOf(#id)")
     public User findUser(int id) {
+        testService.sayHello();
         logger.info("执行了findUser方法");
         User user = createUser(1);
+        try {
+            Thread.sleep(12000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("执行完成===========");
         return user;
     }
 

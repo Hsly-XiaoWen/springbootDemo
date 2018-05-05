@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class HelloController {
 
-    @RequestMapping("/{name}")
+    //@RequestMapping("/{name}")
+    @GetMapping("/{name}")
     public String sayHello(@PathVariable("name") String name, @RequestParam("age") int age) {
         return name + ":" + age;
     }
