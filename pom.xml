@@ -17,6 +17,9 @@
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 设置skiptests为true 打包时会跳过测试文件-->
+        <skipTests>true</skipTests>
+        <jave.version>1.8</jave.version>
     </properties>
     <dependencies>
         <!-- 核心模块，包括自动配置支持、日志和YAML -->
@@ -116,7 +119,7 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                    <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
