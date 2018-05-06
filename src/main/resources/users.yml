@@ -1,0 +1,20 @@
+demo:
+  user:
+    id: 1
+    name: xiaowen
+    age: 1
+    love: xiaowen
+users:
+  user:
+    - id: 1
+      name: xiaowen
+      age: 1
+      love: xiaowen
+    - id: 2
+      name: juemuren
+      age: 2
+      love: juemuren
+    - id: 3
+      name: 海上捞盐
+      age: 3
+      love: 海上钢琴师

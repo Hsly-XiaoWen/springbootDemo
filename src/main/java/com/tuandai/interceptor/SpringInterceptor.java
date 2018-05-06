@@ -23,13 +23,13 @@ public class SpringInterceptor implements HandlerInterceptor {
         // 请求调用之前进行处理
         logger.info("请求信息是{}",httpServletRequest.getRequestURL());
         logger.info("请求信息是{}", JSON.toJSON(httpServletRequest.getParameterMap()));
-        return true;//只有返回true才会继续向下执行，返回false取消当前请求
+        return true;//只有返回true才会继续向下执行，若其返回值为FALSE，就中断请求目标方法了
     }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                            Object o, ModelAndView modelAndView) throws Exception {
-        // 请求处理之后，在页面渲染之前执行
+        // 请求处理之后，在页面渲染之前执行。postHandle 是在目标方法执行完之后执行的
     }
 
     @Override

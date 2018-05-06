@@ -42,12 +42,6 @@
             <artifactId>spring-web</artifactId>
             <version>4.3.4.RELEASE</version>
         </dependency>
-        <!--使用热部署所依赖的jar,启动热部署其他配置https://www.cnblogs.com/lspz/p/6832358.html -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
         <!--使用redis缓存所依赖的jar包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -89,13 +83,18 @@
             <artifactId>caffeine</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <!--启动热部署ctrl + shift + alt + /，选择Registry，勾选勾上 Compiler autoMake allow when app running-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- swagger使用依赖-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.6.1</version>
         </dependency>
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
@@ -128,6 +127,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 如果没有配置这项devtools无效 因为应用不会重启-->
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
