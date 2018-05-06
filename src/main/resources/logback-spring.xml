@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <property name="log.path" value=".\\serverLog\\log\\"/>
+    <property name="log.file" value=".\\serverLog\\logback.log"/>
+    <!--输出到控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+        <!--<level>DEBUG</level>-->
+        <!--</filter>-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!--输出到文件 -->
+    <appender name="file"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.file}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--定义日志的切分方式 -->
+            <fileNamePattern>${log.path}logback.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--表示只保留最近30天的日志-->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--info级别的信息不打印到日志文件-->
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+
+    <!-- 打印执行的sql name指定mapper所在的包，additivity设定为true时，父级也会打印相应的信息，相当于打印多次 -->
+    <!--mysql只在控制台打印，不往日志文件打印-->
+    <!--<logger name="com.tuandai.dao" level="DEBUG" additivity="false">-->
+        <!--<appender-ref ref="console"/>-->
+    <!--</logger>-->
+
+    <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
+    <springProfile name="test,dev">
+        <!--项目出现warn以上级别打印-->
+        <logger name="com.tuandai" level="debug" additivity="false">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+        </logger>
+    </springProfile>
+    <!-- 生产环境. -->
+    <springProfile name="prod">
+        <logger name="com.tuandai" level="ERROR" additivity="false">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+        </logger>
+    </springProfile>
+
+</configuration>

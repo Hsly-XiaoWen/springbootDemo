@@ -41,7 +41,7 @@ public class PersonDAOTest {
     @Test
     public void queryById() throws Exception {
         Person person=personDAO.queryById(10000);
-        System.out.println(person.toString());
+        logger.info("返回数据是{}",person.toString());
     }
 
     @Test

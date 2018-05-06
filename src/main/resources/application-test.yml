@@ -1,9 +1,14 @@
 server:
   port: 8888
+#logging:
+#  level:
+#    root: WARN
+#    com:
+#      tuandai: DEBUG
+#  file: log/server.log #默认情况下，Spring Boot将日志输出到控制台，不会写到日志文件
 spring:
   profiles:
     include: db,app
-    active: prod
   cache:
     type: caffeine
     cache-names:
@@ -13,10 +18,3 @@ spring:
       spec: initialCapacity=50,maximumSize=500,expireAfterWrite=10s,refreshAfterWrite=5s
 logging:
   config: classpath:logback-spring.xml
-#logging:
-#  level:
-#    root: WARN
-#    com:
-#      tuandai: DEBUG
-#  file: log/server.log #默认情况下，Spring Boot将日志输出到控制台，不会写到日志文件
-
