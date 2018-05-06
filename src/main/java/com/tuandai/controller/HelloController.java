@@ -1,6 +1,7 @@
 package com.tuandai.controller;
 
 import com.tuandai.test.User;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -15,23 +16,27 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class HelloController {
 
-    //@RequestMapping("/{name}")
+    @ApiOperation("测试rest风格带参数")
     @GetMapping("/{name}")
     public String sayHello(@PathVariable("name") String name, @RequestParam("age") int age) {
         return name + ":" + age;
     }
 
-    @RequestMapping("/name/hello")
+    @ApiOperation("我就是试试cookie")
+    @GetMapping("/name/hello")
     public String hello(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         return cookies.toString();
     }
-    @RequestMapping(value = "/name/test",method = RequestMethod.POST)
+
+    @ApiOperation("这下是post请求测试了")
+    @PostMapping(value = "/name/test")
     public String name(@RequestParam("name") String name) {
         return "热加载测试+sadsad:::"+name;
     }
 
-    @RequestMapping("/names/getUser")
+    @ApiOperation("请求参数是对象的测试")
+    @GetMapping("/names/getUser")
     public User getUser() {
         return new User("xiaowen", "123213");
     }
