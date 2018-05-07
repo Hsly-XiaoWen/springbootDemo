@@ -1,4 +1,4 @@
-package com.tuandai.restTemplate;
+package com.tuandai.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
