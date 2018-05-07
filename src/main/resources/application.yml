@@ -3,7 +3,7 @@ server:
 spring:
   profiles:
     include: db,app
-    active: prod
+    active: dev
   cache:
     type: caffeine
     cache-names:
@@ -19,4 +19,19 @@ logging:
 #    com:
 #      tuandai: DEBUG
 #  file: log/server.log #默认情况下，Spring Boot将日志输出到控制台，不会写到日志文件
+
+#actuator资源配置
+management:
+  port: 9999
+  context-path: /monitor
+endpoints:
+  shutdown:
+    enabled: false
+info:
+  app:
+    name: springBoot-demo-actuator
+    version: 1.0
+security:
+  basic:
+    enabled: false
 

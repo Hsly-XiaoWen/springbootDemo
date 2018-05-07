@@ -42,6 +42,19 @@
             <artifactId>spring-web</artifactId>
             <version>4.3.4.RELEASE</version>
         </dependency>
+        <!--引入Actuator监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--使用redis缓存所依赖的jar包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -101,6 +114,7 @@
             <version>2.6.1</version>
         </dependency>
 
+        <!--zookeeper jar包依赖-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
