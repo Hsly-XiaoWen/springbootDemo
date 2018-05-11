@@ -31,7 +31,7 @@ public class ReadPropertyService {
      * 使用@Value读取资源配置信息
      */
     public void getTestString(){
-        System.out.println(name+":" + age +  ":" + city);
+        System.out.println(this.name+":" + this.age +  ":" + this.city);
     }
 
     /**
@@ -46,12 +46,12 @@ public class ReadPropertyService {
      * 获取资源配置实体
      */
     public void getUser1(){
-        System.out.println(user1.toString());
+        System.out.println(this.user1.toString());
     }
     /**
      * 读取配置实体集合
      */
     public void getUsers(){
-        users.getUser().forEach(x->System.out.println(x.toString()));
+        this.users.getUser().forEach(x->System.out.println(x.toString()));
     }
 }

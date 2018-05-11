@@ -21,28 +21,28 @@ public class CacheServiceTest {
 
     @Test
     public void findUser() throws Exception {
-        User user=cacheService.findUser(1);
-        User user1 = cacheService.findUser(1);
+        User user=this.cacheService.findUser(1);
+        User user1 = this.cacheService.findUser(1);
         Assert.assertEquals(user.toString(),user1.toString());
     }
 
     @Test
     public void findUsers() throws Exception {
-        cacheService.findUsers(2);
-        cacheService.findUsers(2);
+        this.cacheService.findUsers(2);
+        this.cacheService.findUsers(2);
     }
 
     @Test
     public void deleteUser() throws Exception {
-        cacheService.insertUser(cacheService.createUser(1));
-        cacheService.deleteUser(1);
-        cacheService.findUser(1);
+        this.cacheService.insertUser(this.cacheService.createUser(1));
+        this.cacheService.deleteUser(1);
+        this.cacheService.findUser(1);
     }
 
     @Test
     public void insertUser() throws Exception {
-        cacheService.insertUsers(cacheService.createUser(1));
-        cacheService.findUser(1);
+        this.cacheService.insertUsers(this.cacheService.createUser(1));
+        this.cacheService.findUser(1);
     }
 
 }

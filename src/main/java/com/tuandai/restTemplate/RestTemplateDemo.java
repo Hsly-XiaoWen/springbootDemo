@@ -28,7 +28,7 @@ public class RestTemplateDemo {
      */
     @RequestMapping("/say")
     public String say() {
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://10.100.98.50:10001/", String.class);
+        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity("http://10.100.98.50:10001/", String.class);
         //getForObject返回消息体的内容，头信息、返回码等信息没有
 //        String result = restTemplate.getForObject("http://10.100.98.50:10001/", String.class);
         HttpStatus status = responseEntity.getStatusCode();
@@ -45,9 +45,9 @@ public class RestTemplateDemo {
      */
     @RequestMapping("/says")
     public String sayHello(){
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://10.100.98.50:10001/say/hello?name={1}"
+        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity("http://10.100.98.50:10001/say/hello?name={1}"
                 ,String.class,"xiaowen");
-        String result = restTemplate.getForObject("http://10.100.98.50:10001/say/hello?name={1}"
+        String result =this.restTemplate.getForObject("http://10.100.98.50:10001/say/hello?name={1}"
                 ,String.class,"xiaowen");
         logger.info("返回数据是{}，result{}", JSON.toJSONString(responseEntity), result);
         return responseEntity.getBody();
@@ -62,7 +62,7 @@ public class RestTemplateDemo {
         MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
         requestEntity.add("name", "xiaowen");
         requestEntity.add("age", String.valueOf(21));
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://10.100.98.50:10001/users/user"
+        ResponseEntity<String> responseEntity = this.restTemplate.postForEntity("http://10.100.98.50:10001/users/user"
                 ,requestEntity,String.class);
         return responseEntity.getBody();
     }
@@ -75,11 +75,11 @@ public class RestTemplateDemo {
         MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
         requestEntity.add("name", "xiaowen");
         requestEntity.add("age", "1");
-        ResponseEntity<String> responseEntity = restTemplate.exchange("http://10.100.98.50:10001/users/user"
+        ResponseEntity<String> responseEntity = this.restTemplate.exchange("http://10.100.98.50:10001/users/user"
                 , HttpMethod.POST,null,String.class,requestEntity);
         logger.info("请求结果是{}",JSON.toJSONString(responseEntity));
         MultiValueMap<String, String> r = new LinkedMultiValueMap<>();
-        ResponseEntity<String> result = restTemplate.exchange("http://10.100.98.50:10001/say/hello?name={1}"
+        ResponseEntity<String> result = this.restTemplate.exchange("http://10.100.98.50:10001/say/hello?name={1}"
                 ,HttpMethod.GET,RestTemplateUtils.httpHeader(r),String.class,"xiaowen");
         logger.info("请求结果是{}",JSON.toJSONString(result));
         return "2222222222";

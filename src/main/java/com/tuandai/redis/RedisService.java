@@ -19,6 +19,6 @@ public class RedisService {
      * 批量添加String数据
      */
     public void insertString(Map map){
-        redisTemplate.opsForValue().multiSet(map);
+        this.redisTemplate.opsForValue().multiSet(map);
     }
 }

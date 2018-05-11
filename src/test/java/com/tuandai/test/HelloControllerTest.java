@@ -19,7 +19,7 @@ public class HelloControllerTest {
     //初始化执行
     @Before
     public void setUp() throws Exception {
-        mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
+        this.mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
     }
 
     /**
@@ -28,7 +28,7 @@ public class HelloControllerTest {
      */
     @Test
     public void sayHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/hello?age=31").accept(MediaType.APPLICATION_JSON))
+        this.mvc.perform(MockMvcRequestBuilders.get("/user/hello?age=31").accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();

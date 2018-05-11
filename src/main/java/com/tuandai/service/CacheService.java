@@ -27,7 +27,7 @@ public class CacheService {
      */
     @Cacheable(value = "user", key = "T(String).valueOf(#id)")
     public User findUser(int id) {
-        testService.sayHello();
+        this.testService.sayHello();
         logger.info("执行了findUser方法");
         User user = createUser(1);
         try {

@@ -16,11 +16,11 @@ public class RoutesService {
     private Routes routes;
 
     public void printRoutes(){
-        routes.getRoutes().forEach(x->System.out.println(x.getInterfaces()));
+        this.routes.getRoutes().forEach(x->System.out.println(x.getInterfaces()));
     }
 
     public List<Routes.Route> getRoutes(){
-        List<Routes.Route> result = routes.getRoutes();
+        List<Routes.Route> result = this.routes.getRoutes();
         return result;
     }
 }

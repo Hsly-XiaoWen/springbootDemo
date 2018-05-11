@@ -19,14 +19,14 @@ public class TestServiceImplTest extends AppTest{
 
     @Before
     public void init(){
-        TestInvocationHandler handler = new TestInvocationHandler(testInterface);
-        testService= (TestInterface) Proxy.newProxyInstance(testInterface.getClass().getClassLoader(),
-                testInterface.getClass().getInterfaces(), handler);
+        TestInvocationHandler handler = new TestInvocationHandler(this.testInterface);
+        testService= (TestInterface) Proxy.newProxyInstance(this.testInterface.getClass().getClassLoader(),
+                this.testInterface.getClass().getInterfaces(), handler);
     }
 
     @Test
     public void sayHello() throws Exception {
-        testService.sayHello();
+        this.testService.sayHello();
     }
 
 }
