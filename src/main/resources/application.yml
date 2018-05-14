@@ -11,6 +11,13 @@ spring:
       - person
     caffeine:
       spec: initialCapacity=50,maximumSize=500,expireAfterWrite=10s,refreshAfterWrite=5s
+  thymeleaf:
+    cache: false
+    content-type: text/html
+    mode: HTML5
+    encoding: UTF-8
+    suffix: .html
+    prefix: classpath:/templates/
 logging:
   config: classpath:logback-spring.xml
 #logging:
@@ -20,6 +27,7 @@ logging:
 #      tuandai: DEBUG
 #  file: log/server.log #默认情况下，Spring Boot将日志输出到控制台，不会写到日志文件
 
+#springBoot使用thymeleaf配置
 #actuator资源配置
 management:
   port: 9999
