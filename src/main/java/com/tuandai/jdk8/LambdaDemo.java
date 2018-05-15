@@ -1,5 +1,7 @@
 package com.tuandai.jdk8;
 
+import com.alibaba.fastjson.JSON;
+import com.tuandai.dto.Page;
 import com.tuandai.entiy.User;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Created by 肖文 on 2018/4/23
@@ -98,15 +101,7 @@ public class LambdaDemo {
             }
         };
 
-        List<User> users=new ArrayList<User>(){
-            {
-                add(new User(1, "xiaowen1", 21, "xx"));
-                add(new User(2, "xiaowen2", 21, "xx"));
-                add(new User(3, "xiaowen3", 21, "xx"));
-                add(new User(4, "xiaowen4", 21, "xx"));
-                add(new User(5, "xiaowen5", 21, "xx"));
-            }
-        };
+        List<User> users = this.getUsers();
 
         Collections.sort(users,(s1,s2)->s1.getId()-s1.getId());
         Collections.sort(strs, (s1, s2) -> s1.compareTo(s2));
@@ -115,7 +110,36 @@ public class LambdaDemo {
         strs.forEach(System.out::println);
     }
 
-    private void testUser(int age) {
-        System.out.println(age);
+    /**
+     * 得到List对象进行过滤出来得到新的List对象
+     * 使用lambda表达式
+     */
+    @Test
+    public void testUser() {
+        Page<User> us=new Page<>();
+        List<User> list;
+        list = this.getUsers().stream().filter(x -> x.getName().contains("xiaowen"))
+                .map(m -> new User(m.getId(), m.getName(), m.getAge(), m.getLove()))
+                .collect(Collectors.toList());
+        list.forEach(x->System.out.println(x.toString()));
+        us.setCount(list.size());
+        us.setData(list);
+        logger.info("返回的结果是{}", JSON.toJSONString(us));
+    }
+
+
+    private List<User> getUsers(){
+        List<User> users=new ArrayList<User>(){
+            {
+                add(new User(1, "xiaowen1", 21, "xx"));
+                add(new User(2, "xiaowen2", 21, "xx"));
+                add(new User(3, "xiaowen3", 21, "xx"));
+                add(new User(4, "xiaowen4", 21, "xx"));
+                add(new User(5, "xiaowen5", 21, "xx"));
+                add(new User(6, "xiao6", 21, "xx"));
+                add(new User(7, "xiao7", 21, "xx"));
+            }
+        };
+        return users;
     }
 }

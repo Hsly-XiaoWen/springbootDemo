@@ -2,6 +2,8 @@
 
 #### 项目介绍
 在SpringBoot框架下学习，整合其他技术
+redis,mybatis,jdk8,Cache,Async,定时器，RestTemplate，thymeleaf，过滤器，
+拦截器，swagger,动态代理，actuator，security，shiro，fastdfs的技术点
 
 #### 项目打包
 引入项目后，在pom.xml设置打包形式，.jar或war包。
