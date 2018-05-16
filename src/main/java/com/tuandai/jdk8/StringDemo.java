@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
+
 /**
  * Created by 肖文 on 2018/5/4
  * String方法使用
@@ -37,5 +39,26 @@ public class StringDemo {
         String result5 = new String(name.toCharArray(), 4, 6);
         logger.info("返回数据是result3{}，result4{}",result3,result4);
         logger.info("返回数据是result5{}",result5);
+    }
+
+    /**
+     * String.format()使用占位符
+     */
+    @Test
+    public void formatTest(){
+        String name = String.format("大家好,我是%S", "小文");
+        System.out.println(name);
+        //多个占位符时按照顺序匹配
+        String s = String.format("Hello %s,%s,%s", "小文", "小华", ",welcome!");
+        System.out.println(s);
+        //多个占位符按照索引匹配
+        s = String.format("Hello %2$s,%1$s,%3$s", "小文", "小华", ",welcome!");
+        System.out.println(s);
+        Date date = new Date();
+        /**
+         * 2018-05-15 14:35:40,需要先格式化日期，然后再格式化时间
+         */
+        String d = String.format("%tF %tT", date, date);
+        System.out.printf(d);
     }
 }
