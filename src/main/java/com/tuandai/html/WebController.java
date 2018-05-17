@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * Created by 肖文 on 2018/5/14
@@ -22,6 +25,8 @@ import java.nio.file.Paths;
 public class WebController {
 
     private static String UPLOADED_FOLDER = "D://temp//";
+    private static String UPLOAD_SUCCESS = "%s文件上传成功";
+    private static String UPLOAD_ERROR = "%s文件上传失败，error:%s";
 
     @GetMapping(WebUrl.WEB_HELLO)
     public String hello(ModelMap modelMap) {
@@ -61,18 +66,40 @@ public class WebController {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
-            modelMap.addAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+            modelMap.addAttribute("message",String.format(UPLOAD_SUCCESS,file.getOriginalFilename()));
 //            redirectAttributes.addFlashAttribute("message",
 //                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            modelMap.addAttribute("message", String.format(UPLOAD_ERROR, file.getOriginalFilename()
+                    , e.getMessage()));
         }
 
         return "result";
     }
 
+
+    @PostMapping("/uploads")
+    public String uploads(HttpServletRequest request,ModelMap modelMap){
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
+        byte[] bytes;
+        Path path;
+        if (files == null || files.isEmpty()) {
+            modelMap.addAttribute("message", "Please select a file to upload");
+            return "result";
+        }
+        for (MultipartFile file : files) {
+            try {
+                bytes = file.getBytes();
+                path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+                Files.write(path, bytes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        modelMap.addAttribute("message", String.format(UPLOAD_SUCCESS, "多文件上传成功"));
+        return "result";
+    }
     /**
      * 文件下载实现
      * @param resp
