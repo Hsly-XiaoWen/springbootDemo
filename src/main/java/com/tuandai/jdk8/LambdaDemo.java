@@ -128,7 +128,7 @@ public class LambdaDemo {
     }
 
 
-    private List<User> getUsers(){
+    public List<User> getUsers(){
         List<User> users=new ArrayList<User>(){
             {
                 add(new User(1, "xiaowen1", 21, "xx"));
