@@ -4,8 +4,7 @@ import com.tuandai.entiy.User;
 import com.tuandai.jdk8.LambdaDemo;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 肖文 on 2018/5/17
@@ -36,7 +35,7 @@ public class CollectionUtilsTest {
         us.add(new User(10, "juemuren2", 21, "xx"));
         us.add(new User(11, "juemuren1", 21, "xx"));
         CollectionUtils.process(us,users,x->new User(x.getId(),x.getName(),x.getAge(),x.getLove()));
-        CollectionUtils.handler(users,x->System.out.println(x.toString()));
+        CollectionUtils.handler(users,x->System.out.println(x));
     }
 
     /**
@@ -75,5 +74,70 @@ public class CollectionUtilsTest {
         };
         List<String> result = CollectionUtils.intersection(list1, list2);
         result.forEach(x -> System.out.println(x.toString()));
+    }
+
+    @Test
+    public void union() throws Exception {
+        List<String> list1 = new ArrayList<String>(){
+            {
+                add("AAA");
+                add("BBB");
+                add("CCC");
+            }
+        };
+        Set<String> set1 = new HashSet<String>(){
+            {
+                add("AAA");
+                add("BBB");
+                add("CCC");
+            }
+        };
+        Set<String> set2 = new HashSet<String>(){
+            {
+                add("AAA");
+                add("BBB");
+                add("CCC");
+            }
+        };
+
+        List<String> list2 = new ArrayList<String>(){
+            {
+                add("AAA");
+                add("BBB");
+            }
+        };
+        List<String> result = CollectionUtils.union(list1, list2);
+        Collection<String> result1 = CollectionUtils.union(set1, set2);
+        result.forEach(x->System.out.println(x));
+        result1.forEach(x->System.out.println(x));
+    }
+
+    @Test
+    public void join() throws Exception {
+        List<String> list1 = new ArrayList<String>(){
+            {
+                add("AAA");
+                add("BBB");
+                add("CCC");
+            }
+        };
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "xiaowen");
+        map.put("age", "21");
+        Map<String, User> userMap = new HashMap<>();
+        userMap.put("xiaowen", new User(1, "xiaowen", 21, "aaa"));
+        userMap.put("juemuren", new User(2, "juemuren", 21, "bbb"));
+        map.forEach((k,v)->System.out.println(k+":"+v));
+        users = new LambdaDemo().getUsers();
+        String result = CollectionUtils.join(list1, "==");
+        String result1 = CollectionUtils.join(users, "=", x -> x.getName());
+        String result2 = CollectionUtils.join(map, "=","&");
+        String result3 = CollectionUtils.valueJoin(userMap, "&",x->x.getName());
+        String result4 = CollectionUtils.keyJoin(userMap, "&",x->x);
+        System.out.println(result);
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        System.out.println(result4);
     }
 }

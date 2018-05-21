@@ -3,7 +3,8 @@ package com.tuandai.entiy;
 /**
  * Created by 肖文 on 2018/4/23
  */
-public class User {
+public class
+User {
 
     private int id;
     private String name;

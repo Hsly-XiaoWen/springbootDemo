@@ -115,6 +115,12 @@
             <version>2.6.1</version>
         </dependency>
 
+        <!--拼音依赖jar-->
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.0</version>
+        </dependency>
         <!--zookeeper jar包依赖-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
