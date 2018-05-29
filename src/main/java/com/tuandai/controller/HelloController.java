@@ -39,6 +39,7 @@ public class HelloController {
     @ApiOperation("请求参数是对象的测试")
     @GetMapping("/names/getUser")
     public User getUser() {
+        int i=5/0;
         return new User("xiaowen", "123213");
     }
 }

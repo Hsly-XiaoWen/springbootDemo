@@ -7,4 +7,6 @@ public interface SpringBootDemoUrl {
 
     String ROUTES = "routes";
     String ROUTES_LIST = "list";
+    String USER = "user";
+    String USER1 = "user1";
 }

@@ -1,19 +1,24 @@
 package com.tuandai.entiy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * Created by 肖文 on 2018/4/23
  */
-public class
-User {
+public class User {
 
+    @JsonIgnore
     private int id;
     private String name;
     private int age;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String love;
 
-    public User(){
+    public User() {
 
     }
+
     public User(int id, String name, int age, String love) {
         this.id = id;
         this.name = name;

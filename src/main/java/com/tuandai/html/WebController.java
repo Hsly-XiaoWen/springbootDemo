@@ -31,6 +31,7 @@ public class WebController {
     @GetMapping(WebUrl.WEB_HELLO)
     public String hello(ModelMap modelMap) {
         modelMap.addAttribute("host", "SprintBoot Test");
+        int i = 5 / 0;
         return "hello";
     }
 
