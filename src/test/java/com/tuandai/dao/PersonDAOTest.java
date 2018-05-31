@@ -27,7 +27,7 @@ public class PersonDAOTest {
      */
     @Test
     public void insertPerson() throws Exception {
-        Person p = new Person(100, "test", 2, "1352451556");
+        Person p = new Person(10012, "test", 2, "1352451556");
         int result=this.personDAO.insertPerson(p);
         this.personDAO.insertPersons(p);
         logger.info("返回的数据是{}",result);

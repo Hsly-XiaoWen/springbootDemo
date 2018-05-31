@@ -1,12 +1,11 @@
 package com.tuandai.dao;
 
 import com.tuandai.entiy.Person;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * Created by 肖文 on 2018/4/27
  */
-@Mapper
+
 public interface PersonDAO {
 
     /**
