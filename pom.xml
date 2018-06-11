@@ -121,7 +121,20 @@
             <artifactId>pinyin4j</artifactId>
             <version>2.5.0</version>
         </dependency>
-        <!--zookeeper jar包依赖-->
+        <!--shiro依赖-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <!--testNG测试框架jar依赖-->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.7</version>
+            <scope>test</scope>
+        </dependency>
+        <!--com.tuandai.zookeepereper jar包依赖&ndash;&gt;-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>

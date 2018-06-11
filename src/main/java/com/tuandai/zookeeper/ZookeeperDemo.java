@@ -1,4 +1,4 @@
-package zookeeper;
+package com.tuandai.zookeeper;
 
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
