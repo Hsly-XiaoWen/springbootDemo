@@ -16,7 +16,7 @@ spring:
     name: mysqlDB
     url: jdbc:mysql://localhost:3306/mybatis
     username: root
-    password: xw06025615
+    password: 28b21c1cfd
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
     maxActive: 20
