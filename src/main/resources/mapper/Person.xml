@@ -14,6 +14,11 @@
         SELECT * FROM PERSON WHERE ID=#{id}
     </select>
 
+    <resultMap id="personList" type="com.tuandai.entiy.Person"/>
+    <select id="queryPerson" parameterType="int" resultMap="personList">
+        SELECT * FROM PERSON
+    </select>
+
     <update id="updatePerson" parameterType="int">
         UPDATE PERSON SET USERNAME=#{userName},AGE=#{age},MOBILEPHONE=#{mobilePhone} WHERE ID=#{id}
     </update>

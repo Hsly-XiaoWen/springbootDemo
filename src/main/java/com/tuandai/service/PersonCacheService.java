@@ -1,5 +1,6 @@
 package com.tuandai.service;
 
+import com.github.pagehelper.PageHelper;
 import com.tuandai.dao.PersonDAO;
 import com.tuandai.entiy.Person;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by 肖文 on 2018/4/27
@@ -34,6 +37,15 @@ public class PersonCacheService {
         return person;
     }
 
+    /**
+     * 分页显示数据
+     * @return
+     */
+    public List<Person> personList() {
+        PageHelper.startPage(2, 5);
+        List<Person> data = this.personDAO.queryPerson();
+        return data;
+    }
     /**
      * 
      * @param person

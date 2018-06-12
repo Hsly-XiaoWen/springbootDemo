@@ -48,5 +48,11 @@ info:
 security:
   basic:
     enabled: false
-# 上传文件大小设置
+
+# mybatis分页设置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 

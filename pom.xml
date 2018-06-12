@@ -114,7 +114,12 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
         </dependency>
-
+        <!-- springboot分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.2</version>
+        </dependency>
         <!--拼音依赖jar-->
         <dependency>
             <groupId>com.belerweb</groupId>

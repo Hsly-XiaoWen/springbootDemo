@@ -2,6 +2,8 @@ package com.tuandai.dao;
 
 import com.tuandai.entiy.Person;
 
+import java.util.List;
+
 /**
  * Created by 肖文 on 2018/4/27
  */
@@ -28,6 +30,12 @@ public interface PersonDAO {
      * @return
      */
     Person queryById(int id);
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<Person> queryPerson();
 
     /**
      * 更新用户
