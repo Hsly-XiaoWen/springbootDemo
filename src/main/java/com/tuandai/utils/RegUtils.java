@@ -169,10 +169,32 @@ public class RegUtils {
      * @param reg 正则
      * @return 是否匹配
      */
-    public final static boolean isMatche(String str, String reg) {
+    public final static boolean isMatcher(String str, String reg) {
         Pattern pattern = Pattern.compile(reg);
         Matcher isNum   = pattern.matcher(str);
         return isNum.matches();
+    }
+
+
+    /**
+     * 判断是否符是合法的文件路径
+     *
+     * @param path 需要处理的文件路径
+     */
+    public final static boolean legalFile(String path) {
+        String regex = "[a-zA-Z]:(?:[/][^/:*?\"<>|.][^/:*?\"<>|]{0,254})+";
+        return isMatcher(commandPath(path), regex);
+    }
+
+    /**
+     * 返回一个通用的文件路径
+     *
+     * @param file 需要处理的文件路径
+     * @return
+     * Summary windows中路径分隔符是\在linux中是/但windows也支持/方式 故全部使用/
+     */
+    public final static String commandPath(String file) {
+        return file.replaceAll("\\\\{1,}", "/").replaceAll("\\/{2,}", "/");
     }
 
     /**
