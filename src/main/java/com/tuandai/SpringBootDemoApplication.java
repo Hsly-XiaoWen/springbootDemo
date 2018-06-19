@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -19,6 +21,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.tuandai.dao")
 @EnableAsync
 @EnableScheduling//使用定时任务需添加的配置
+@EnableFeignClients
+@EnableEurekaClient
 public class SpringBootDemoApplication {
 
     public static void main(String[] args) {
