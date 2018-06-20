@@ -18,7 +18,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableCaching
-@MapperScan("com.tuandai.dao")
+@MapperScan({"com.tuandai.dao","com.tuandai.shiro.dao"})
 @EnableAsync
 @EnableScheduling//使用定时任务需添加的配置
 @EnableFeignClients

@@ -1,5 +1,8 @@
 package com.tuandai.shiro;
 
+import com.tuandai.shiro.dao.PermissionDAO;
+import com.tuandai.shiro.dao.RoleDAO;
+import com.tuandai.shiro.dao.UserDAO;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -9,8 +12,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,11 +20,16 @@ import java.util.Set;
  */
 public class CustomRealm extends AuthorizingRealm {
 
-    HashMap<String,String> maps=new HashMap<>();
-    {
-        maps.put("xiaowen", "123456");
-        super.setName("test");
+    private UserDAO userDAO;
+    private RoleDAO roleDAO;
+    private PermissionDAO permissionDAO;
+
+    public CustomRealm(UserDAO userDAO, RoleDAO roleDAO, PermissionDAO permissionDAO) {
+        this.userDAO = userDAO;
+        this.permissionDAO = permissionDAO;
+        this.roleDAO = roleDAO;
     }
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String userName= (String) principalCollection.getPrimaryPrincipal();
@@ -37,25 +43,19 @@ public class CustomRealm extends AuthorizingRealm {
 
     //数据库获取权限信息
     private Set<String> getPermissionsByName(String userName) {
-        Set<String> permissions = new HashSet<>();
-        permissions.add("delete");
-        permissions.add("update");
-        permissions.add("insert");
-        return permissions;
+        return this.permissionDAO.getPermissionsByName(userName);
     }
 
     //数据库获取角色信息
     private Set<String> getRolesByName(String userName) {
-        Set<String> roles = new HashSet<>();
-        roles.add("admin");
-        roles.add("user");
-        return roles;
+        return this.roleDAO.getRolesByName(userName);
     }
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
         //从主体传输过来的认证信息，获取用户名
         String username= (String) authenticationToken.getPrincipal();
+        System.out.println(username+"======================");
         //通过用户名从数据库获取凭证
         String password = getPasswordByUserName(username);
         if (password == null) {
@@ -68,6 +68,8 @@ public class CustomRealm extends AuthorizingRealm {
 
     //从数据库获取凭证
     private String getPasswordByUserName(String username) {
-        return "123456";
+        System.out.println(this.userDAO+"==============");
+        String password = this.userDAO.getPasswordByUserName(username);
+        return password;
     }
 }
