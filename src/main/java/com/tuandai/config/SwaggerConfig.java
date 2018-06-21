@@ -23,7 +23,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.tuandai.feign"))
+                .apis(RequestHandlerSelectors.basePackage("com.tuandai.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
