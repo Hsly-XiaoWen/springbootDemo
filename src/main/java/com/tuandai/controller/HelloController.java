@@ -1,5 +1,7 @@
 package com.tuandai.controller;
 
+import com.tuandai.dto.RequestDTO;
+import com.tuandai.dto.Result;
 import com.tuandai.test.User;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,28 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class HelloController {
 
-    @ApiOperation("测试rest风格带参数")
-    @GetMapping("/{name}")
-    public String sayHello(@PathVariable("name") String name, @RequestParam("age") int age) {
-        return name + ":" + age;
+//    @ApiOperation("测试rest风格带参数")
+//    @GetMapping("/{name}")
+//    public String sayHello(@PathVariable("name") String name, @RequestParam("age") int age) {
+//        return name + ":" + age;
+//    }
+
+    @ApiOperation("测试网关")
+    @PostMapping("/login")
+    public Result sayHello(@RequestBody RequestDTO<User> requestDTO) {
+        User user = requestDTO.getData();
+        user.setUserId(2418744);
+        System.out.println(user.toString());
+        return Result.success(user);
+    }
+
+    @ApiOperation("测试网关")
+    @PostMapping("/text")
+    public Result auth(@RequestBody RequestDTO<User> requestDTO) {
+        System.out.println(requestDTO.getUserId()+"==============");
+        User user = requestDTO.getData();
+        System.out.println(user.toString());
+        return Result.success(user);
     }
 
     @ApiOperation("我就是试试cookie")

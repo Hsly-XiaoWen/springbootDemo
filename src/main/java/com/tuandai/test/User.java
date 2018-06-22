@@ -8,8 +8,17 @@ import java.io.Serializable;
  * @date 2018/3/30 11:50
  */
 public class User implements Serializable{
+    private int userId;
     private String name;
     private String password;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public User() {
     }

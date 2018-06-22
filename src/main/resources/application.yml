@@ -18,6 +18,8 @@ spring:
     encoding: UTF-8
     suffix: .html
     prefix: classpath:/templates/
+  application:
+    name: springboot-demo
 #  设置文件上传配置
 #  http:
 #    multipart:
@@ -58,6 +60,6 @@ pagehelper:
 eureka:
   client:
     serviceUrl:
-      defaultZone: "http://10.100.98.50:8761/eureka/"
+      defaultZone: "http://118.89.29.12:8761/eureka/"
 
 
