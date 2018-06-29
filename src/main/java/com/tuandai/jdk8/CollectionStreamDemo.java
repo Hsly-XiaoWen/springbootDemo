@@ -1,11 +1,10 @@
 package com.tuandai.jdk8;
 
 import com.tuandai.entiy.User;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -16,12 +15,14 @@ import java.util.stream.Collectors;
  */
 public class CollectionStreamDemo {
 
+    private List<User> users;
+
     /**
      * Stream 提供了新的方法 'forEach' 来迭代流中的每个数据。
      */
-    @Test
-    public void test() {
-        List<User> users=new ArrayList<User>(){
+    @Before
+    public void init() {
+        users = new ArrayList<User>() {
             {
                 add(new User(1, "xiaowen1", 21, "xx"));
                 add(new User(2, "xiaowen2", 21, "xx"));
@@ -29,24 +30,77 @@ public class CollectionStreamDemo {
                 add(new User(4, "xiaowen3", 22, "xx"));
             }
         };
-        //相当于users:forEach(x->System.out.println(x))
-        //双冒号相当于实现接口方法的具体实现
-        users.forEach(System.out::println);
 
-        //过滤选择返回为true的数据集合
-        List<User> us = users.stream().filter(x -> x.getAge() == 21).collect(Collectors.toList());
-        us.forEach(System.out::println);
+    }
 
-        System.out.println("实现限流");
-        //limit 方法用于获取指定数量的流
-        List<User> data = users.stream().limit(4).collect(Collectors.toList());
-        data.forEach(System.out::println);
-
-        long count=users.stream().filter(x -> x.getId() == 21).count();
+    public void test() {
+        long count = users.stream().filter(x -> x.getId() == 21).count();
         System.out.println(count);
-
         //sorted 方法用于对流进行排序
         Random random = new Random();
         random.ints().limit(10).sorted().forEach(System.out::println);
+    }
+
+    /**
+     * 双冒号相当于实现接口方法的具体实现
+     */
+    @Test
+    public void test1() {
+         //相当于users:forEach(x->System.out.println(x))
+        users.forEach(System.out::println);
+    }
+
+    /**
+     * Filter 过滤+ sorted 排序
+     */
+    @Test
+    public void test2() {
+        List<User> result = users.stream().filter(x -> x.getAge() == 21)
+                .sorted(Comparator.comparing(User::getName).reversed()).collect(Collectors.toList());
+        result.forEach(System.out::println);
+
+        //过滤选择返回为true的数据集合
+        List<User> us = users.stream().filter(x -> x.getAge() == 22).collect(Collectors.toList());
+        us.forEach(System.out::println);
+    }
+
+    /**
+     * 实现限流
+     */
+    @Test
+    public void test3() {
+        //limit 方法用于获取指定数量的流
+        List<User> data = users.stream().limit(2).collect(Collectors.toList());
+        data.forEach(System.out::println);
+
+        List<User> result = users.stream().limit(2).filter(x->x.getAge()==22).collect(Collectors.toList());
+        result.forEach(System.out::println);
+    }
+
+    /**
+     * reduce对参数进行运算
+     */
+    @Test
+    public void test4() {
+        Optional<Integer> result = users.stream().limit(2).map(User::getAge).reduce((x1, x2) -> x1 + x2);
+        result.ifPresent(System.out::println);
+    }
+
+
+    /**
+     * map 不支持stream
+     */
+    @Test
+    public void test5() {
+        Map<Integer, String> map = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            map.put(i, "val" + i);
+        }
+
+        map.forEach((key,value)->System.out.println(key+":"+value));
+
+        map.merge(1, "test", (value, newValue) -> value.concat(newValue));
+        map.forEach((key,value)->System.out.println(key+":"+value));
     }
 }
