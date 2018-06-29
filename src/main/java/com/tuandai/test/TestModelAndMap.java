@@ -27,4 +27,15 @@ public class TestModelAndMap {
         System.out.println(obj.toString());
         System.out.println(obj1.toString());
     }
+
+    /**
+     * compareTo方法返回值测试
+     * compareTo方法通过与参数对比，返回比较的值
+     */
+    @Test
+    public void testCompareTo() {
+        String name = "xiaowen";
+        int result = name.compareTo("kiaowen");
+        System.out.println(result);
+    }
 }
