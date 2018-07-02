@@ -1,6 +1,8 @@
 package com.tuandai.utils;
 
 import org.junit.Test;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -8,6 +10,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -165,5 +168,33 @@ public class CryptographyUtils extends BaseUtils{
         //解密
         result = CryptographyUtils.des3DecodeCBC(key.getBytes(), iv.getBytes(), result);
         logger.info("CBC解密结果是{}",result);
+    }
+
+    /**
+     * base63编码方法
+     * @param bytes
+     * @return
+     */
+    public static String byte2base64(byte[] bytes) {
+        BASE64Encoder base64Encoder = new BASE64Encoder();
+        return base64Encoder.encode(bytes);
+    }
+
+    public static byte[] base642byte(String base64) throws IOException {
+        BASE64Decoder base64Decoder = new BASE64Decoder();
+        return base64Decoder.decodeBuffer(base64);
+    }
+
+    @Test
+    public void testBase64() throws IOException {
+        String name = "my name is XiaoWen , come from China";
+        byte[] bytes = name.getBytes();
+        String data=CryptographyUtils.byte2base64(bytes);
+        System.out.println(data);
+
+        String base64 = "bXkgbmFtZSBpcyBYaWFvV2VuICwgY29tZSBmcm9tIENoaW5h";
+        bytes=CryptographyUtils.base642byte(base64);
+        name = new String(bytes);
+        System.out.println(name);
     }
 }
