@@ -1,15 +1,18 @@
 package com.tuandai.test;
 
-import java.io.Serializable;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @author 肖文
  * @Description ${DESCRIPTION}
  * @date 2018/3/30 11:50
  */
-public class User implements Serializable{
+public class User{
+    @JSONField(name = "UserId")
     private int userId;
+    @JSONField(name = "Name")
     private String name;
+    @JSONField(name = "PassWord")
     private String password;
 
     public int getUserId() {

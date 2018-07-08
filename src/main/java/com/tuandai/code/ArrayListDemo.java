@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * Created by 肖文 on 2018/7/7
  */
-public class ArrayListDemo implements Serializable {
+public class ArrayListDemo<E> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -51,10 +51,10 @@ public class ArrayListDemo implements Serializable {
      *
      * @param collection
      */
-    public ArrayListDemo(Collection collection) {
+    public ArrayListDemo(Collection<? extends E> collection) {
         this.elementData = collection.toArray();
         if ((size = this.elementData.length) != 0) {
-            if (this.elementData.getClass() != Object.class) {
+            if (this.elementData.getClass() != Object[].class) {
                 this.elementData = Arrays.copyOf(elementData, size, Object[].class);
             }
         } else {
