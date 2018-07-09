@@ -3,6 +3,7 @@ package com.tuandai.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.tuandai.config.spring.CustomRequestMappingHandlerMapping;
 import com.tuandai.interceptor.SpringInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -27,6 +29,17 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {//WebMvcConfigurerAdapter
 
+
+    /**
+     * SpringBoot 路径匹配RequestMappingHandlerMapping优先查找参数变量然后是路径变量
+     * SpringBoot允许自定义方法实现路径匹配规则
+     * 跳过路径参数复杂的匹配流程以及正则匹配
+     * @return
+     */
+    @Override
+    protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
+        return new CustomRequestMappingHandlerMapping();
+    }
 
     /**
      * 注册拦截器

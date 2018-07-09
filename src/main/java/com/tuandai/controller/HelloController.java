@@ -2,6 +2,7 @@ package com.tuandai.controller;
 
 import com.tuandai.dto.RequestDTO;
 import com.tuandai.dto.Result;
+import com.tuandai.entiy.Person;
 import com.tuandai.test.User;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,14 @@ public class HelloController {
         user.setUserId(2418744);
         System.out.println(user.toString());
         return Result.success(user);
+    }
+
+    @ApiOperation("测试请求参数大小写问题")
+    @PostMapping("/testJson")
+    public Result testJson(@RequestBody RequestDTO<Person> requestDTO) {
+        Person person = requestDTO.getData();
+        System.out.println(person.toString()+"==================");
+        return Result.success(person);
     }
 
     @ApiOperation("测试网关")
