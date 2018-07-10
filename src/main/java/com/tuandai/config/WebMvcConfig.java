@@ -33,7 +33,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {//WebMvcConfigurer
     /**
      * SpringBoot 路径匹配RequestMappingHandlerMapping优先查找参数变量然后是路径变量
      * SpringBoot允许自定义方法实现路径匹配规则
-     * 跳过路径参数复杂的匹配流程以及正则匹配
      * @return
      */
     @Override

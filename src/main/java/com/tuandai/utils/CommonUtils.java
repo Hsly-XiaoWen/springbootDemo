@@ -1,5 +1,7 @@
 package com.tuandai.utils;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -105,5 +107,23 @@ public class CommonUtils {
      */
     public static boolean isEmail(String email) {
         return email != null && email.matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+");
+    }
+
+    /**
+     * 版本号是按照v(\d{1,2}.\d{1,2}.\d{1,2})定义
+     * 当出现1.1.1时候 补全成10101返回  用于比较版本号大小
+     * @param version
+     * @return
+     */
+    public static int completeVersion(String version) {
+        StringBuilder builder = new StringBuilder();
+        String[] arr = StringUtils.split(version,".");
+        for (int i=0,size=arr.length;i<size;i++) {
+            if (arr[i].length() == 1) {
+                builder.append(0);
+            }
+            builder.append(arr[i]);
+        }
+        return getInt(builder.toString(), 0);
     }
 }

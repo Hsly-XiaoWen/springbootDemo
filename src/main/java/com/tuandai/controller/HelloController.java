@@ -1,5 +1,7 @@
 package com.tuandai.controller;
 
+import com.tuandai.config.spring.ApiVersion;
+import com.tuandai.config.spring.Version;
 import com.tuandai.dto.RequestDTO;
 import com.tuandai.dto.Result;
 import com.tuandai.entiy.Person;
@@ -20,11 +22,19 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class HelloController {
 
-//    @ApiOperation("测试rest风格带参数")
-//    @GetMapping("/{name}")
-//    public String sayHello(@PathVariable("name") String name, @RequestParam("age") int age) {
-//        return name + ":" + age;
-//    }
+    @ApiOperation("测试自定义requestMapping")
+    @GetMapping("/version1")
+    @ApiVersion(version = Version.V_1_1_0)
+    public String sayHello() {
+        return "你好，我是最低版本的返回字段";
+    }
+
+    @ApiOperation("测试自定义requestMapping")
+    @GetMapping("/version1")
+    @ApiVersion(version = Version.V_1_1_2)
+    public String sayHello2() {
+        return "恭喜你获取最新版本的返回值";
+    }
 
     @ApiOperation("测试网关")
     @PostMapping("/login")
