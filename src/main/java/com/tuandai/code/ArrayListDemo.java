@@ -75,6 +75,29 @@ public class ArrayListDemo<E> implements Serializable {
         }
     }
 
+    /**
+     * 扩容前判断
+     * @param minCapacity
+     */
+    private void ensureCapacityInternal(int minCapacity) {
+        if (elementData == EMPTY_ELEMENT_DATA) {
+            minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
+        }
+        ensureExplicitCapacity(minCapacity);
+    }
+
+    private void ensureExplicitCapacity(int minCapacity) {
+        modCount++;
+
+        // overflow-conscious code
+        if (minCapacity - elementData.length > 0)
+            grow(minCapacity);
+    }
+
+    /**
+     * 扩容
+     * @param minCapacity
+     */
     private void grow(int minCapacity) {
         int oldCapacity = this.elementData.length;
         int newCapacity = oldCapacity + (oldCapacity >> 1);
@@ -82,7 +105,197 @@ public class ArrayListDemo<E> implements Serializable {
             newCapacity = minCapacity;
         }
         if (newCapacity - MAX_ARRAY_SIZE > 0) {
-//            newCapacity=
+            newCapacity = hugeCapacity(minCapacity);
+        }
+        Arrays.copyOf(elementData, newCapacity);
+    }
+
+    private int hugeCapacity(int minCapacity) {
+        if (minCapacity < 0) {
+            throw new OutOfMemoryError();
+        }
+        return minCapacity > MAX_ARRAY_SIZE ?
+                Integer.MAX_VALUE : MAX_ARRAY_SIZE;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean contain(Object object) {
+        if (object == null) {
+            for (int i = 0; i < size; i++) {
+                if (elementData[i] == null) {
+                    return true;
+                }
+            }
+        } else {
+            for (int i=0;i<size;i++) {
+                if (object.equals(elementData[i])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Object[] toArray() {
+        return Arrays.copyOf(elementData, size);
+    }
+
+    public E get(int index) {
+        this.checkIndex(index);
+        return (E) elementData[index];
+    }
+
+    private void checkIndex(int index) {
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException();
         }
     }
+
+    E elementData(int index) {
+        return (E) elementData[index];
+    }
+
+    /**
+     * 修改指定位置value，返回原来值
+     * @param index
+     * @param element
+     * @return
+     */
+    public E set(int index, E element) {
+        this.checkIndex(index);
+        E oldValue = (E) elementData(index);
+        elementData[index] = element;
+        return oldValue;
+    }
+
+    /**
+     * 在集合后面添加数据
+     * @param element
+     * @return
+     */
+    public boolean add(E element) {
+        //保证容量足够
+        ensureCapacityInternal(size + 1);
+        elementData[size++] = element;
+        return true;
+    }
+
+    /**
+     * 指定位置添加数据
+     * @param index
+     * @param e
+     */
+    public void add(int index, E e) {
+        checkIndex(index);
+        ensureCapacityInternal(size + 1);
+        System.arraycopy(elementData, index, elementData, index + 1, size - index);
+        elementData[index] = e;
+        size++;
+    }
+
+    /**
+     * 移除指定index的数值
+     * @param index
+     * @return
+     */
+    public E remove(int index) {
+        checkIndex(index);
+        E value = elementData(index);
+        int num = size - index - 1;
+        if (num > 0) {
+            System.arraycopy(elementData,index+1,elementData,index,num);
+        }
+        elementData[size--] = null;
+        return value;
+    }
+
+    /**
+     * 移除对象
+     * @param object
+     * @return
+     */
+    public boolean remove(Object object) {
+        if (object == null) {
+            for (int i = 0; i < size; i++) {
+                if (elementData[i] == null) {
+                    fastRemove(i);
+                    return true;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (elementData[i] == object) {
+                    fastRemove(i);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void fastRemove(int index) {
+        modCount++;
+        int numMoved = size - index - 1;
+        if (numMoved > 0)
+            System.arraycopy(elementData, index+1, elementData, index,
+                    numMoved);
+        elementData[--size] = null; // 设置为null,方便GC回收
+    }
+
+    /**
+     * 清空集合
+     */
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            elementData[i] = null;
+        }
+        size = 0;
+    }
+
+    /**
+     * 往集合添加集合
+     * @param e
+     * @return
+     */
+    public boolean addAll(Collection<? extends E> e) {
+        Object[] a = e.toArray();
+        ensureCapacityInternal(size + a.length);
+        System.arraycopy(a,0,elementData,size,a.length);
+        size += a.length;
+        return a.length != 0;
+    }
+
+    public boolean addAll(int index, Collection<? extends E> e) {
+        checkIndex(index);
+        Object[] a = e.toArray();
+        int numSize = a.length;
+        ensureCapacityInternal(size + numSize);
+        int numMove = size - numSize;
+        if (numMove > 0) {
+            System.arraycopy(elementData,index,elementData,index+numSize,numMove);
+        }
+        System.arraycopy(a,0,elementData,index,numSize);
+        size += numSize;
+        return numSize != 0;
+    }
+
+    public void removeRange(int fromIndex, int toIndex) {
+        int numMove = size - toIndex;
+        System.arraycopy(elementData, toIndex, elementData, fromIndex, numMove);
+
+        int newSize = size - (toIndex-fromIndex);
+        for (int i = newSize; i < size; i++) {
+            elementData[i] = null;
+        }
+        size = newSize;
+    }
+
+
 }
