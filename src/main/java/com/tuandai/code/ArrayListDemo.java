@@ -1,13 +1,12 @@
 package com.tuandai.code;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * Created by 肖文 on 2018/7/7
  */
-public class ArrayListDemo<E> implements Serializable {
+public class ArrayListDemo<E> extends AbstractList<E> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -297,5 +296,5 @@ public class ArrayListDemo<E> implements Serializable {
         size = newSize;
     }
 
-
+    Map<String, String> map = new HashMap<>();
 }
