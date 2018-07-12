@@ -61,5 +61,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: "http://118.89.29.12:8761/eureka/"
+zookeeper:
+  server:
+    host: 118.89.29.12:2181
+    sessionTimeout: 5000
+    connectionTimeout: 3000
 
 

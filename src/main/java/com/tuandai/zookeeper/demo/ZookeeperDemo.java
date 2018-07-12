@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by 肖文 on 2018/5/3
+ * 使用原生的zookeeper api 操作zk
  * Watch没有监听的创建、删除节点的方法，使用异步回调完成后续业务逻辑
  */
 public class ZookeeperDemo {

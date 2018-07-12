@@ -3,6 +3,7 @@ package com.tuandai.config;
 import com.tuandai.entiy.Routes;
 import com.tuandai.entiy.User1;
 import com.tuandai.entiy.Users;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,5 +26,11 @@ public class AppConfiguration {
     @Bean
     public User1 initUser1(){
         return new User1();
+    }
+
+    @Bean
+    @RefreshScope
+    public Globals globals() {
+        return new Globals();
     }
 }
