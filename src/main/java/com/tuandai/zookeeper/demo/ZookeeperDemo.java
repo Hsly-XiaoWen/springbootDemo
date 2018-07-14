@@ -62,7 +62,7 @@ public class ZookeeperDemo {
      */
     @Test
     public void update() throws KeeperException, InterruptedException {
-        String path = "/test/love";
+        String path = "/test/run";
         Stat stat = this.zooKeeper.setData(path, "sivan".getBytes(), -1);
         System.out.println(stat.getVersion());
     }
