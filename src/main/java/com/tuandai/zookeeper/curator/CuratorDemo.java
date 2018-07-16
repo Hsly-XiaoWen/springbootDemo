@@ -16,6 +16,10 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by 肖文 on 2018/7/14
+ * curator实现了三种缓存：NodeCache、PathChildrenCache、TreeCache
+ * NodeCache是用来监听数据节点的变化的
+ * PathChildrenCache是用来监听指定节点的子节点变化的
+ * TreeCache结合上面两种缓存实现的，既可以实现指定节点的数据变化、又可以实现指定节点下的子节点的变化情况
  * 使用curator框架操作zk
  */
 public class CuratorDemo {
