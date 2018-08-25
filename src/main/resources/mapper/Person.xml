@@ -19,6 +19,11 @@
         SELECT * FROM PERSON
     </select>
 
+    <resultMap id="excelPerson" type="com.tuandai.entiy.PersonDTO"/>
+    <select id="queryPersonDTO" resultMap="excelPerson">
+        SELECT * FROM PERSON
+    </select>
+
     <update id="updatePerson" parameterType="int">
         UPDATE PERSON SET USERNAME=#{userName},AGE=#{age},MOBILEPHONE=#{mobilePhone} WHERE ID=#{id}
     </update>

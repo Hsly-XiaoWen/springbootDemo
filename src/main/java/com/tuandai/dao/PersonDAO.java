@@ -1,6 +1,7 @@
 package com.tuandai.dao;
 
 import com.tuandai.entiy.Person;
+import com.tuandai.entiy.PersonDTO;
 
 import java.util.List;
 
@@ -36,6 +37,12 @@ public interface PersonDAO {
      * @return
      */
     List<Person> queryPerson();
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<PersonDTO> queryPersonDTO();
 
     /**
      * 更新用户
