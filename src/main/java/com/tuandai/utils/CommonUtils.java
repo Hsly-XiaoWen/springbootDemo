@@ -2,6 +2,9 @@ package com.tuandai.utils;
 
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -125,5 +128,29 @@ public class CommonUtils {
             builder.append(arr[i]);
         }
         return getInt(builder.toString(), 0);
+    }
+
+    /**
+     * 向客户端输出一段字符串
+     * @param response
+     * @param str
+     * @throws IOException
+     */
+    public static void writeString(HttpServletResponse response, String str) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
+        response.getWriter().write(str);
+    }
+
+    /**
+     * 向客户端输出一段JavaScript
+     * @param response
+     * @param script
+     * @throws IOException
+     */
+    public static void writeJavaScript(HttpServletResponse response, String script) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter rw = response.getWriter();
+        rw.write("<script>" + script + "</script>");
+        rw.flush();
     }
 }

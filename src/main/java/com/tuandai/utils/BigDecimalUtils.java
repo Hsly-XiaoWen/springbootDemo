@@ -3,6 +3,7 @@ package com.tuandai.utils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Created by 肖文 on 2018/4/25
@@ -27,9 +28,11 @@ public class BigDecimalUtils extends BaseUtils{
      * @return
      */
     public BigDecimal cutBigDecimal(BigDecimal bigDecimal, int scale,int mode) {
+        bigDecimal.intValue();//转化为int
+        bigDecimal.doubleValue();//转化为double
+        bigDecimal.floatValue();//转化为float
         return bigDecimal.setScale(scale,mode);
     }
-
     @Test
     public void testRoundingMode(){
         BigDecimal decimal = new BigDecimal(2.35);
@@ -53,5 +56,14 @@ public class BigDecimalUtils extends BaseUtils{
         logger.info("result8结果是{}",result8);
         BigDecimal result9 = cutBigDecimal(new BigDecimal(2.5), 0, BigDecimal.ROUND_HALF_EVEN);
         logger.info("result9结果是{}",result9);
+    }
+
+
+    @Test
+    public void test() {
+        LocalDate date1 = LocalDate.of(2018, 11, 30);
+        LocalDate date2 = LocalDate.of(2018, 10, 31);
+        long days = date1.toEpochDay() - date2.toEpochDay();
+        System.out.println(days);
     }
 }
