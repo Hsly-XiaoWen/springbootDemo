@@ -18,7 +18,7 @@ public class ZkClientDemo {
 
     @Before
     public void init() {
-        this.zkClient = new ZkClient("118.89.29.12:2181", 5000, 5000);
+        this.zkClient = new ZkClient("112.74.161.161:2181", 5000, 5000);
         this.zkClient.setZkSerializer(new MyZkSerializer());
 
         //订阅节点数据的变化

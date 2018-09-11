@@ -2,10 +2,10 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 spring:
   redis:
-    host: 118.89.29.12
+    host: 112.74.161.161
     port: 6379
     database: 7
-    password: admin
+    password: Sivan11833
     pool:
       max-active: 8
       max-wait: -1

@@ -60,10 +60,10 @@ pagehelper:
 eureka:
   client:
     serviceUrl:
-      defaultZone: "http://118.89.29.12:8761/eureka/"
+      defaultZone: "http://112.74.161.161:8761/eureka/"
 zookeeper:
   server:
-    host: 118.89.29.12:2181
+    host: 112.74.161.161:2181
     sessionTimeout: 5000
     connectionTimeout: 3000
 
