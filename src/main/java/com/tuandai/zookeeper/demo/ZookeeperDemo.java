@@ -25,7 +25,7 @@ public class ZookeeperDemo {
 //            System.out.println(path+"已经触发了watch机制========= " + event.getState());};
         watcher = new ReadWatch();
         try {
-            zooKeeper = new ZooKeeper("118.89.29.12:2181", 3000, watcher);
+            zooKeeper = new ZooKeeper("112.74.161.161:2181", 3000, watcher);
         } catch (Exception e) {
             e.printStackTrace();
         }
