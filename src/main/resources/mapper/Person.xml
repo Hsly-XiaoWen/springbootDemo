@@ -19,6 +19,10 @@
         SELECT * FROM PERSON
     </select>
 
+    <select id="queryPersonExcelDTO" resultType="com.tuandai.entiy.PersonExcelDTO">
+        SELECT * FROM PERSON
+    </select>
+
     <resultMap id="excelPerson" type="com.tuandai.entiy.PersonDTO"/>
     <select id="queryPersonDTO" resultMap="excelPerson">
         SELECT * FROM PERSON

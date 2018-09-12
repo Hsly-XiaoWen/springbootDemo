@@ -3,6 +3,13 @@ package com.tuandai.controller;
 import com.tuandai.config.JwtConfig;
 import com.tuandai.config.spring.ApiVersion;
 import com.tuandai.config.spring.Version;
+import com.tuandai.dao.PersonDAO;
+import com.tuandai.entiy.PersonDTO;
+import com.tuandai.entiy.PersonExcelDTO;
+import com.tuandai.utils.HttpContextUtils;
+import com.tuandai.utils.excel.ExcelUtils;
+import com.tuandai.utils.excel.ExportExcel;
+import com.tuandai.utils.excel.ExportUtils;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.ApiOperation;
 import org.I0Itec.zkclient.ZkClient;
@@ -12,6 +19,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by 肖文 on 2018/6/21
@@ -24,6 +36,8 @@ public class LoginController {
     private JwtConfig jwtConfig;
     @Autowired
     private ZkClient zkClient;
+    @Autowired
+    private PersonDAO personDAO;
 
     @ApiOperation("生成token")
     @GetMapping("/check")
@@ -56,5 +70,20 @@ public class LoginController {
     @ApiVersion(version = Version.V_1_1_0)
     public String testZk() {
         return this.zkClient.readData("/test/name");
+    }
+
+    @GetMapping("/export")
+    public void downExcel(HttpServletRequest request
+            , HttpServletResponse response){
+        ExportUtils.setResponseHeader("excel",request,response);
+        List<PersonExcelDTO> result = this.personDAO.queryPersonExcelDTO();
+        ExportExcel exportExcel=new ExportExcel("用户信息表", PersonDTO.class)
+                .setDataList(result);
+        try {
+            exportExcel.write(response.getOutputStream());
+            response.flushBuffer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

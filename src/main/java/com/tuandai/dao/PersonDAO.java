@@ -2,6 +2,7 @@ package com.tuandai.dao;
 
 import com.tuandai.entiy.Person;
 import com.tuandai.entiy.PersonDTO;
+import com.tuandai.entiy.PersonExcelDTO;
 
 import java.util.List;
 
@@ -55,4 +56,10 @@ public interface PersonDAO {
      * @param userName
      */
     void queryByUserName(String userName);
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<PersonExcelDTO> queryPersonExcelDTO();
 }
