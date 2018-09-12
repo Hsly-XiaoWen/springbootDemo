@@ -6,6 +6,7 @@ import com.tuandai.config.spring.Version;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.ApiOperation;
 import org.I0Itec.zkclient.ZkClient;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,12 @@ public class LoginController {
         } else {
             return "token校验失败";
         }
+    }
+
+    @GetMapping("/test")
+    @RequiresPermissions("update")
+    public String testPermission(){
+        return "测试权限控制";
     }
 
     @ApiOperation("测试获取数据")

@@ -3,6 +3,7 @@
 <mapper namespace="com.tuandai.shiro.dao.PermissionDAO">
     <resultMap id="permissionNames" type="java.lang.String"/>
     <select id="getPermissionsByName" parameterType="java.lang.String" resultMap="permissionNames">
-        SELECT name FROM role_permission WHERE roleId in (SELECT id FROM user_role WHERE name=#{name})
+        SELECT `name` FROM role_permission WHERE roleId in
+        (SELECT A.id FROM user_role A,`user` B WHERE A.userId=B.id AND B.userName=#{name})
     </select>
 </mapper>
