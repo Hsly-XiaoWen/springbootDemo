@@ -1,5 +1,6 @@
 package com.tuandai.controller;
 
+import com.tuandai.annotations.SysLog;
 import com.tuandai.config.JwtConfig;
 import com.tuandai.config.spring.ApiVersion;
 import com.tuandai.config.spring.Version;
@@ -73,6 +74,7 @@ public class LoginController {
     }
 
     @GetMapping("/export")
+    @SysLog("导出用户信息表")
     public void downExcel(HttpServletRequest request
             , HttpServletResponse response){
         ExportUtils.setResponseHeader("excel",request,response);
