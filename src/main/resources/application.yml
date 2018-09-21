@@ -32,7 +32,7 @@ logging:
 #  level:
 #    root: WARN
 #    com:
-#      tuandai: DEBUG
+#      juemuren: DEBUG
 #  file: log/server.log #默认情况下，Spring Boot将日志输出到控制台，不会写到日志文件
 
 #springBoot使用thymeleaf配置

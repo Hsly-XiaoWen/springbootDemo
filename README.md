@@ -17,7 +17,7 @@ redis,mybatis,jdk8,Cache,Async,定时器，RestTemplate，thymeleaf，过滤器�
 在浏览器输入：http://ip:8888/swagger-ui.html并可以查看项目提供接口
 
 #### 项目说明
-源码地址：http://git.tuandai888.com/xiaowen/springboot-demo.git
+源码地址：个人码云地址
 
 master分支：主分支，学习分支
 

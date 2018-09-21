@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tuandai.dao.PersonDAO">
-    <insert id="insertPerson" parameterType="com.tuandai.entiy.Person" >
+<mapper namespace="com.juemuren.dao.PersonDAO">
+    <insert id="insertPerson" parameterType="com.juemuren.entiy.Person" >
         INSERT INTO PERSON(ID,USERNAME,AGE,MOBILEPHONE)VALUES (#{id},#{userName},#{age},#{mobilePhone})
     </insert>
 
     <!-- 使用useGeneratedKeys添加数据返回主键，通过传入参数获取-->
-    <insert id="insertPersons" parameterType="com.tuandai.entiy.Person" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
+    <insert id="insertPersons" parameterType="com.juemuren.entiy.Person" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
         INSERT INTO PERSON(USERNAME,AGE,MOBILEPHONE)VALUES (#{userName},#{age},#{mobilePhone})
     </insert>
 
-    <select id="queryById" parameterType="int" resultType="com.tuandai.entiy.Person">
+    <select id="queryById" parameterType="int" resultType="com.juemuren.entiy.Person">
         SELECT * FROM PERSON WHERE ID=#{id}
     </select>
 
-    <resultMap id="personList" type="com.tuandai.entiy.Person"/>
+    <resultMap id="personList" type="com.juemuren.entiy.Person"/>
     <select id="queryPerson" parameterType="int" resultMap="personList">
         SELECT * FROM PERSON
     </select>
 
-    <select id="queryPersonExcelDTO" resultType="com.tuandai.entiy.PersonExcelDTO">
+    <select id="queryPersonExcelDTO" resultType="com.juemuren.enums.PersonExcelDTO">
         SELECT * FROM PERSON
     </select>
 
-    <resultMap id="excelPerson" type="com.tuandai.entiy.PersonDTO"/>
+    <resultMap id="excelPerson" type="com.juemuren.entiy.PersonDTO"/>
     <select id="queryPersonDTO" resultMap="excelPerson">
         SELECT * FROM PERSON
     </select>
@@ -31,7 +31,7 @@
     <update id="updatePerson" parameterType="int">
         UPDATE PERSON SET USERNAME=#{userName},AGE=#{age},MOBILEPHONE=#{mobilePhone} WHERE ID=#{id}
     </update>
-    <select id="queryByUserName" parameterType="java.lang.String" resultType="com.tuandai.entiy.Person">
+    <select id="queryByUserName" parameterType="java.lang.String" resultType="com.juemuren.entiy.Person">
         SELECT * from PERSON WHERE UserName=#{userName}
     </select>
 </mapper>

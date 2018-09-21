@@ -37,21 +37,21 @@
 
     <!-- 打印执行的sql name指定mapper所在的包，additivity设定为true时，父级也会打印相应的信息，相当于打印多次 -->
     <!--mysql只在控制台打印，不往日志文件打印-->
-    <!--<logger name="com.tuandai.dao" level="DEBUG" additivity="false">-->
+    <!--<logger nacom.juemurennndai.dao" level="DEBUG" additivity="false">-->
         <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
     <springProfile name="test,dev">
         <!--项目出现warn以上级别打印-->
-        <logger name="com.tuandai" level="debug" additivity="false">
+        <logger name="com.juemuren" level="debug" additivity="false">
             <appender-ref ref="console"/>
             <appender-ref ref="file"/>
         </logger>
     </springProfile>
     <!-- 生产环境. -->
     <springProfile name="prod">
-        <logger name="com.tuandai" level="ERROR" additivity="false">
+        <logger name="com.juemuren" level="ERROR" additivity="false">
             <appender-ref ref="console"/>
             <appender-ref ref="file"/>
         </logger>
