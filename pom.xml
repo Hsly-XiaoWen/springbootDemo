@@ -171,7 +171,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-        com.juemurennndai.zookeepereper jar包依赖&ndash;&gt;-->
+        <!--com.juemurennndai.zookeepereper jar包依赖&ndash;&gt;&ndash;&gt;-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
