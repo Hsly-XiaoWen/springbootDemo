@@ -72,7 +72,7 @@ public class LoginController {
     }
 
     @GetMapping("/export")
-    @SysLog("导出用户信息表")
+    @SysLog("导出用户信息表s")
     public void downExcel(HttpServletRequest request
             , HttpServletResponse response){
         ExportUtils.setResponseHeader("excel",request,response);
