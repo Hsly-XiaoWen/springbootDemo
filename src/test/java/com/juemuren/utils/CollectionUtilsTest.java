@@ -1,7 +1,7 @@
 package com.juemuren.utils;
 
 import com.juemuren.entiy.User;
-import com.juemuren.jdk8.LambdaDemo;
+import com.juemuren.jdk.jdk8.LambdaDemo;
 import org.junit.Test;
 
 import java.util.*;

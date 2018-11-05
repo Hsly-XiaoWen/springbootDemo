@@ -5,6 +5,7 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.TreeCache;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
@@ -13,6 +14,7 @@ import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 肖文 on 2018/7/14
@@ -145,5 +147,54 @@ public class CuratorDemo {
             System.out.println(stat);
         }, es).forPath("/curator/name");
         Thread.sleep(10000);
+    }
+
+    public static void main(String[] args) {
+        //设置重试机制，刚开始重试间隔为1秒，之后重试间隔逐渐增加，最多重试不超过三次
+        RetryPolicy retryPolicy =new ExponentialBackoffRetry(1000, 3);
+        CuratorFramework clients = CuratorFrameworkFactory.builder()
+                .connectString("112.74.161.161:2181")//
+                .sessionTimeoutMs(5000)//会话超时时间
+                .connectionTimeoutMs(15000)//连接超时时间
+                .retryPolicy(retryPolicy)
+                .build();
+        clients.start();
+        //4 分布式锁
+        final InterProcessMutex mutex = new InterProcessMutex(clients, "/curator/lock");
+        //读写锁
+        //InterProcessReadWriteLock readWriteLock = new InterProcessReadWriteLock(client, "/readwriter");
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
+
+        for (int i = 0; i < 15; i++) {
+            fixedThreadPool.submit(new Runnable() {
+                @Override
+                public void run() {
+                    boolean flag = false;
+                    try {
+                        //尝试获取锁，最多等待5秒
+                        flag = mutex.acquire(5, TimeUnit.SECONDS);
+                        Thread currentThread = Thread.currentThread();
+                        if(flag){
+                            System.out.println("线程"+currentThread.getId()+"获取锁成功");
+                        }else{
+                            System.out.println("线程"+currentThread.getId()+"获取锁失败");
+                        }
+                        //模拟业务逻辑，延时4秒
+                        Thread.sleep(4000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally{
+                        if(flag){
+                            try {
+                                System.out.println("线程"+ Thread.currentThread().getId()+"释放锁");
+                                mutex.release();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+        }
     }
 }

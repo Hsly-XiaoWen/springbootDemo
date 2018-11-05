@@ -1,4 +1,4 @@
-package com.juemuren.jdk8;
+package com.juemuren.jdk.jdk8;
 
 /**
  * Created by 肖文 on 2018/4/24

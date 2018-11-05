@@ -1,4 +1,4 @@
-package com.juemuren.jdk8;
+package com.juemuren.jdk.jdk8;
 
 /**
  * Created by 肖文 on 2018/6/14
@@ -8,13 +8,13 @@ package com.juemuren.jdk8;
 public interface Jdk8Interface {
 
     default void say() {
-        System.out.println("this is jdk8 interface demo");
+        System.out.println("this is jdk interface demo");
     }
 
     /**jdk8接口可以声明（并且可以提供实现）静态方法
      * 接口静态方法只能通过接口名.方法名来实现调用
      */
     static void run() {
-        System.out.println("this is jdk8 static method");
+        System.out.println("this is jdk static method");
     }
 }

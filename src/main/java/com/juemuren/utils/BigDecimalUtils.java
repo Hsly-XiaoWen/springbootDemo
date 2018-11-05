@@ -35,26 +35,25 @@ public class BigDecimalUtils extends BaseUtils{
     }
     @Test
     public void testRoundingMode(){
-        BigDecimal decimal = new BigDecimal(2.35);
-        BigDecimal result = cutBigDecimal(new BigDecimal(2.35), 1, BigDecimal.ROUND_DOWN);
+        BigDecimal result = cutBigDecimal(BigDecimal.valueOf(2.35), 1, BigDecimal.ROUND_DOWN);
         logger.info("结果是{}",result);
-        BigDecimal result1 = cutBigDecimal(new BigDecimal(2.35), 1, BigDecimal.ROUND_UP);
+        BigDecimal result1 = cutBigDecimal(BigDecimal.valueOf(2.35), 1, BigDecimal.ROUND_UP);
         logger.info("结果是{}",result1);
-        BigDecimal result2= cutBigDecimal(new BigDecimal(2.355), 2, BigDecimal.ROUND_HALF_DOWN);
+        BigDecimal result2= cutBigDecimal(BigDecimal.valueOf(2.355), 2, BigDecimal.ROUND_HALF_DOWN);
         logger.info("结果是{}",result2);
-        BigDecimal result3= cutBigDecimal(new BigDecimal(2.355), 2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal result3= cutBigDecimal(BigDecimal.valueOf(2.355), 2, BigDecimal.ROUND_HALF_UP);
         logger.info("结果是{}",result3);
-        BigDecimal result4 = cutBigDecimal(new BigDecimal(2.35), 1, BigDecimal.ROUND_HALF_EVEN);
+        BigDecimal result4 = cutBigDecimal(BigDecimal.valueOf(2.35), 1, BigDecimal.ROUND_HALF_EVEN);
         logger.info("结果是{}",result4);
-        BigDecimal result5 = cutBigDecimal(new BigDecimal(2.5), 0, BigDecimal.ROUND_DOWN);
+        BigDecimal result5 = cutBigDecimal(BigDecimal.valueOf(2.5), 0, BigDecimal.ROUND_DOWN);
         logger.info("result5结果是{}",result5);
-        BigDecimal result6 = cutBigDecimal(new BigDecimal(2.5), 0, BigDecimal.ROUND_UP);
+        BigDecimal result6 = cutBigDecimal(BigDecimal.valueOf(2.5), 0, BigDecimal.ROUND_UP);
         logger.info("result6结果是{}",result6);
-        BigDecimal result7= cutBigDecimal(new BigDecimal(2.5), 0, BigDecimal.ROUND_HALF_DOWN);
+        BigDecimal result7= cutBigDecimal(BigDecimal.valueOf(2.5), 0, BigDecimal.ROUND_HALF_DOWN);
         logger.info("result7结果是{}",result7);
-        BigDecimal result8= cutBigDecimal(new BigDecimal(2.5), 0, BigDecimal.ROUND_HALF_UP);
+        BigDecimal result8= cutBigDecimal(BigDecimal.valueOf(2.5), 0, BigDecimal.ROUND_HALF_UP);
         logger.info("result8结果是{}",result8);
-        BigDecimal result9 = cutBigDecimal(new BigDecimal(2.5), 0, BigDecimal.ROUND_HALF_EVEN);
+        BigDecimal result9 = cutBigDecimal(BigDecimal.valueOf(2.5), 0, BigDecimal.ROUND_HALF_EVEN);
         logger.info("result9结果是{}",result9);
     }
 

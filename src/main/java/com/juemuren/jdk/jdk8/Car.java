@@ -1,4 +1,4 @@
-package com.juemuren.jdk8;
+package com.juemuren.jdk.jdk8;
 
 import com.juemuren.entiy.User;
 import com.juemuren.utils.functions.Supplier;

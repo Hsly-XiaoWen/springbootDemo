@@ -1,4 +1,4 @@
-package com.juemuren.jdk8;
+package com.juemuren.jdk.jdk8;
 
 import com.alibaba.fastjson.JSON;
 import com.juemuren.dto.Page;

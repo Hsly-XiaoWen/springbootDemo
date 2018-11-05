@@ -1,4 +1,4 @@
-package com.juemuren.jdk8;
+package com.juemuren.jdk.jdk8;
 
 import org.junit.Test;
 import org.slf4j.Logger;

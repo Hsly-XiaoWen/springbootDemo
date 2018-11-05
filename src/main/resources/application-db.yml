@@ -14,7 +14,7 @@ spring:
     timeout: 5000
   datasource:
     name: mysqlDB
-    url: jdbc:mysql://localhost:3306/mybatis
+    url: jdbc:mysql://112.74.161.161:3306/mybatis
     username: root
     password: 28b21c1cfd
     driver-class-name: com.mysql.jdbc.Driver
