@@ -26,6 +26,12 @@ public class PersonCacheServiceTest extends AppTest {
 
     @Test
     public void updatePerson() throws Exception {
+        Person data = this.personCacheService.query();
+        Person data1 = this.personCacheService.querys();
+        Person data2 = this.personCacheService.findPerson();
+        logger.info("查询结果是{}", JSON.toJSON(data));
+        logger.info("查询结果是{}", JSON.toJSON(data1));
+        logger.info("查询结果是{}", JSON.toJSON(data2));
     }
 
     @Test

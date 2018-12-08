@@ -20,21 +20,21 @@ public class MybatisTimeoutInterceptor implements Interceptor {
 
     public Object intercept(Invocation invocation) throws Throwable {
         Statement statement = (Statement)invocation.proceed();
-        try {
-            Integer transactionTimeout = (Integer) invocation.getArgs()[1];
-            if(statement != null && statement.getQueryTimeout() <= 0) {
-                // 如果mybatis设置了全局timeout, 或者sql单独设置了timeout, 或者设置了事务timeout
-                // 就不会设置数据源timeout
-                String dataSource = DataSourceHolder.getDataSource();
-                Integer dataSourceTimeout = DataSourceTimeoutResolver.getDataSourceTimeoutInSeconds(dataSource);
-                if(dataSourceTimeout != null) {
-                    statement.setQueryTimeout(dataSourceTimeout);
-                    StatementUtil.applyTransactionTimeout(statement, dataSourceTimeout, transactionTimeout);
-                }
-            }
-        } catch (Exception e) {
-            logger.error("MybatisTimeoutInterceptor error: " + e.getMessage(), e);
-        }
+//        try {
+//            Integer transactionTimeout = (Integer) invocation.getArgs()[1];
+//            if(statement != null && statement.getQueryTimeout() <= 0) {
+//                // 如果mybatis设置了全局timeout, 或者sql单独设置了timeout, 或者设置了事务timeout
+//                // 就不会设置数据源timeout
+//                String dataSource = DataSourceHolder.getDataSource();
+//                Integer dataSourceTimeout = DataSourceTimeoutResolver.getDataSourceTimeoutInSeconds(dataSource);
+//                if(dataSourceTimeout != null) {
+//                    statement.setQueryTimeout(dataSourceTimeout);
+//                    StatementUtil.applyTransactionTimeout(statement, dataSourceTimeout, transactionTimeout);
+//                }
+//            }
+//        } catch (Exception e) {
+//            logger.error("MybatisTimeoutInterceptor error: " + e.getMessage(), e);
+//        }
         return statement;
     }
 

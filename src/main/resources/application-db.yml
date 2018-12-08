@@ -4,13 +4,13 @@ config.db:
   cdo:
     read:
       mybatis:
-        url: jdbc:mysql://112.74.161.161:3306/mybatis
+        url: jdbc:mysql://112.74.161.161:3306/db_apm
         username: root
         password: 28b21c1cfd
         driver-class-name: com.mysql.jdbc.Driver
     write:
       crm:
-        url: jdbc:mysql://112.74.161.161:3306/mybatis
+        url: jdbc:mysql://112.74.161.161:3306/db_apm_read
         username: root
         password: 28b21c1cfd
         driver-class-name: com.mysql.jdbc.Driver

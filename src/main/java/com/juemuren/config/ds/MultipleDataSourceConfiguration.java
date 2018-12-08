@@ -45,6 +45,11 @@ public class MultipleDataSourceConfiguration implements BeanDefinitionRegistryPo
     }
 
     @Bean
+    public DbSourceInterceptor dbSourceInterceptor(){
+        return new DbSourceInterceptor();
+    }
+
+    @Bean
     @ConditionalOnMissingBean
     public MybatisInterceptorConfigurer mybatisPluginConfigurer() {
         return new MybatisInterceptorConfigurer.Default();
@@ -97,8 +102,8 @@ public class MultipleDataSourceConfiguration implements BeanDefinitionRegistryPo
         sessionFactory.setConfigLocation(new DefaultResourceLoader().getResource("classpath:mybatis-config.xml"));
 
         List<Interceptor> interceptors = new ArrayList<>();
-        interceptors.add(new MybatisTimeoutInterceptor());
-        interceptors.add(new MybatisSQLPerformanceInterceptor());
+//        interceptors.add(new MybatisTimeoutInterceptor());
+//        interceptors.add(new MybatisSQLPerformanceInterceptor());
         interceptors.addAll(mybatisInterceptorConfigurer.supplyInterceptors());
         sessionFactory.setPlugins(interceptors.toArray(new Interceptor[0]));
 
@@ -170,6 +175,7 @@ public class MultipleDataSourceConfiguration implements BeanDefinitionRegistryPo
 
         return MultipleDataSourceInitializer.DEFAULT;
     }
+
     /**
      * 初始化druid数据源配置, 现在不需要在配置文件里配置一些默认参数了
      * @param dataSource

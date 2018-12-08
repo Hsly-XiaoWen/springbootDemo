@@ -9,8 +9,6 @@ public class Person {
     private int age ;
     private String mobilePhone ;
 
-    private Boolean isHaveCar;
-
     public Person() {}
 
     public Person(int id, String userName, int age, String mobilePhone) {

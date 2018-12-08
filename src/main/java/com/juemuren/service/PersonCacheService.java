@@ -1,6 +1,8 @@
 package com.juemuren.service;
 
 import com.github.pagehelper.PageHelper;
+import com.juemuren.config.ds.DataSourceName;
+import com.juemuren.config.ds.DataSourceNames;
 import com.juemuren.dao.PersonDAO;
 import com.juemuren.entiy.Person;
 import org.slf4j.Logger;
@@ -61,4 +63,25 @@ public class PersonCacheService {
     public void deletePerson(Person person){
         logger.info("执行了该方法{}",person.toString());
     }
+
+
+    /********
+     * 注解切库
+      * @return
+     */
+    @DataSourceName(value = DataSourceNames.myBatisDB)
+    public Person query(){
+        return this.personDAO.queryById(1);
+    }
+
+    public Person findPerson(){
+        return this.personDAO.queryById(1);
+    }
+
+    @DataSourceName(value = DataSourceNames.crmDB)
+    public Person querys(){
+        return this.personDAO.queryById(1);
+    }
+
+
 }
