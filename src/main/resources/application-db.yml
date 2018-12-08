@@ -1,5 +1,20 @@
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+config.db:
+  cdo:
+    read:
+      mybatis:
+        url: jdbc:mysql://112.74.161.161:3306/mybatis
+        username: root
+        password: 28b21c1cfd
+        driver-class-name: com.mysql.jdbc.Driver
+    write:
+      crm:
+        url: jdbc:mysql://112.74.161.161:3306/mybatis
+        username: root
+        password: 28b21c1cfd
+        driver-class-name: com.mysql.jdbc.Driver
+
 spring:
   redis:
     host: 112.74.161.161
@@ -12,22 +27,22 @@ spring:
       max-idle: 8
       min-idle: 0
     timeout: 5000
-  datasource:
-    name: mysqlDB
-    url: jdbc:mysql://112.74.161.161:3306/mybatis
-    username: root
-    password: 28b21c1cfd
-    driver-class-name: com.mysql.jdbc.Driver
-    filters: stat
-    maxActive: 20
-    initialSize: 1
-    maxWait: 60000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
+#  datasource:
+#    name: mysqlDB
+#    url: jdbc:mysql://112.74.161.161:3306/mybatis
+#    username: root
+#    password: 28b21c1cfd
+#    driver-class-name: com.mysql.jdbc.Driver
+#    filters: stat
+#    maxActive: 20
+#    initialSize: 1
+#    maxWait: 60000
+#    minIdle: 1
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: select 'x'
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxOpenPreparedStatements: 20

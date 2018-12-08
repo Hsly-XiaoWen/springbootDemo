@@ -34,4 +34,8 @@
     <select id="queryByUserName" parameterType="java.lang.String" resultType="com.juemuren.entiy.Person">
         SELECT * from PERSON WHERE UserName=#{userName}
     </select>
+
+    <select id="getCustomer" resultType="com.juemuren.entiy.Customer">
+        SELECT id,customer_id as customerId from t_customer_report
+    </select>
 </mapper>

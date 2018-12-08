@@ -3,6 +3,7 @@ package com.juemuren.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.juemuren.service.RedisConsumer;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -18,6 +19,9 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import java.lang.reflect.Method;
@@ -67,16 +71,18 @@ public class RedisConfig extends CachingConfigurerSupport {
         return template;
     }
 
+    //初始化监听器
     @Bean
-    RedissonClient redissonClient() {
-        Config config = new Config();
-        config.useSingleServer()
-                .setAddress("112.74.161.161")
-                .setTimeout(3000)
-                .setConnectionPoolSize(64)
-                .setConnectionMinimumIdleSize(10)
-                .setPassword("Sivan11833");
-
-        return Redisson.create(config);
+    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
+                                            MessageListenerAdapter listenerAdapter) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.addMessageListener(listenerAdapter, new PatternTopic("RedisMessageTest"));
+        return container;
+    }
+    //利用反射来创建监听到消息之后的执行方法
+    @Bean
+    MessageListenerAdapter listenerAdapter(RedisConsumer redisReceiver) {
+        return new MessageListenerAdapter(redisReceiver, "receiveMessage");
     }
 }

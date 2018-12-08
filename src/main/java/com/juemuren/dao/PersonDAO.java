@@ -1,5 +1,6 @@
 package com.juemuren.dao;
 
+import com.juemuren.entiy.Customer;
 import com.juemuren.entiy.Person;
 import com.juemuren.entiy.PersonDTO;
 import com.juemuren.enums.PersonExcelDTO;
@@ -62,4 +63,6 @@ public interface PersonDAO {
      * @return
      */
     List<PersonExcelDTO> queryPersonExcelDTO();
+
+    List<Customer> getCustomer();
 }
