@@ -207,6 +207,14 @@
             <artifactId>druid</artifactId>
             <version>1.0.9</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.10.0</version>
+        </dependency>
+
         <!-- Redisson 实现分布式锁 -->
         <dependency>
             <groupId>org.redisson</groupId>
