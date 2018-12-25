@@ -13,6 +13,8 @@ public class Globals {
     private int sessionTimeout;
     @Value("${zookeeper.server.connectionTimeout}")
     private int connectionTimeout;
+    @Value("${test.name:www.bai.com}")
+    private String management;
 
     public String getZkHost() {
         return zkHost;
@@ -36,5 +38,13 @@ public class Globals {
 
     public void setConnectionTimeout(int connectionTimeout) {
         this.connectionTimeout = connectionTimeout;
+    }
+
+    public String getManagement() {
+        return management;
+    }
+
+    public void setManagement(String management) {
+        this.management = management;
     }
 }

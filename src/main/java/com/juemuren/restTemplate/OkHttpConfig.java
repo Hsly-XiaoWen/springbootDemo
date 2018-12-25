@@ -63,4 +63,15 @@ public class OkHttpConfig {
     public void setOkHttpAliveDuration(int okHttpAliveDuration) {
         this.okHttpAliveDuration = okHttpAliveDuration;
     }
+
+    @Override
+    public String toString() {
+        return "OkHttpConfig{" +
+                "okHttpReadTimeout=" + okHttpReadTimeout +
+                ", okHttpConnectTimeout=" + okHttpConnectTimeout +
+                ", okHttpWriteTimeout=" + okHttpWriteTimeout +
+                ", okHttpMaxIdle=" + okHttpMaxIdle +
+                ", okHttpAliveDuration=" + okHttpAliveDuration +
+                '}';
+    }
 }
