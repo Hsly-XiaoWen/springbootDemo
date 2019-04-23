@@ -1,6 +1,7 @@
 package com.juemuren.annotations;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -25,7 +26,7 @@ public class BrushAspect {
         String  object = new String ();
     }
 
-    @Before("brushRedis()")
+    @Around("brushRedis()")
     public void brush(ProceedingJoinPoint joinPoint){
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
