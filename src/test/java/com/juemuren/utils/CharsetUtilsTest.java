@@ -1,5 +1,6 @@
 package com.juemuren.utils;
 
+import com.juemuren.entiy.Customer;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,16 @@ public class CharsetUtilsTest {
         logger.info("返回的数据是{}",result3);
         logger.info("返回的数据是{}",result4);
         logger.info("返回的数据是{}",System.getProperties());
+    }
+
+    @Test
+    public void testLoad() {
+        ClassLoader result = System.class.getClassLoader();
+        ClassLoader result1 = Object.class.getClassLoader();
+        ClassLoader result2 = Customer.class.getClassLoader();
+        System.out.println(result);
+        System.out.println(result1);
+        System.out.println(result2);
     }
 
 }
