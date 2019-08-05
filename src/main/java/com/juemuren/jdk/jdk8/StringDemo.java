@@ -61,4 +61,28 @@ public class StringDemo {
         String d = String.format("%tF %tT", date, date);
         System.out.printf(d);
     }
+
+
+    /**
+     * String的intern()方法就是扩充常量池的一个方法；当一个String实例str调用intern()方法时，
+     * Java查找常量池中是否有相同Unicode的字符串常量，如
+     * 果有，则返回其的引用，如果没有，则在常量池中增加一个Unicode等于str的字符串并返回它的引用
+     */
+    @Test
+    public void test(){
+
+        String name = "java";
+        String name1 = new String("java");
+        System.out.println(name == name1.intern());
+
+        String str = "test";
+        String strs = new String("test");
+        System.out.println(str == strs);
+
+        String str1 = new StringBuilder("中国").append("钓鱼岛").toString();
+        System.out.println(str1.intern() == str1);
+
+        String str2 = new StringBuilder("ja").append("va").toString();
+        System.out.println(str2.intern() == str2);
+    }
 }
