@@ -31,17 +31,17 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        //测试git提交回滚，删除该段代码
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("userName");
-        if (StringUtils.hasText(userName)) {
-            // 执行业务逻辑
-        } else {
-            filterChain.doFilter(servletRequest,servletResponse);
-        }
-        filterChain.doFilter(servletRequest,servletResponse);
+//        //测试git提交回滚，删除该段代码
+//        HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        HttpServletResponse response = (HttpServletResponse) servletResponse;
+//        HttpSession session = request.getSession();
+//        String userName = (String) session.getAttribute("userName");
+//        if (StringUtils.hasText(userName)) {
+//            // 执行业务逻辑
+//        } else {
+//            filterChain.doFilter(servletRequest,servletResponse);
+//        }
+//        filterChain.doFilter(servletRequest,servletResponse);
 
     }
 
