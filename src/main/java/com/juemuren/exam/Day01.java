@@ -4,7 +4,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class Main1 {
+/**
+ * 华为编程题：https://www.nowcoder.com/ta/huawei
+ */
+public class Day01 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -12,7 +15,7 @@ public class Main1 {
         sc.close();
 
         String str = Integer.toBinaryString(a);
-        String temp = str.replaceAll("0","");
+        String temp = str.replaceAll("0", "");
         System.out.println(temp.length());
         //test1();
 
@@ -201,7 +204,7 @@ public class Main1 {
         char[] strs = str.toCharArray();
         for (int i = strs.length - 1; i >= 0; i--) {
             char c = strs[i];
-            if (!set.contains(c)){
+            if (!set.contains(c)) {
                 set.add(strs[i]);
             }
         }
@@ -216,13 +219,13 @@ public class Main1 {
      * 字符在ACSII码范围内(0~127)，换行表示结束符
      * 不算在字符里。不在范围内的不作统计。
      */
-    public static void test9(){
+    public static void test9() {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         sc.close();
         char[] strs = str.toCharArray();
         StringBuilder build = new StringBuilder();
-        for(int i=strs.length-1;i>=0;i--){
+        for (int i = strs.length - 1; i >= 0; i--) {
             build.append(strs[i]);
         }
         System.out.println(build.toString());
@@ -235,7 +238,7 @@ public class Main1 {
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();
 
-        List<String> list= new ArrayList<>();
+        List<String> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             list.add(sc.next());
         }
