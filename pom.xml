@@ -287,21 +287,21 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- 如果没有配置这项devtools无效 因为应用不会重启-->
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--&lt;!&ndash; 如果没有配置这项devtools无效 因为应用不会重启&ndash;&gt;-->
+                <!--<configuration>-->
+                    <!--<fork>true</fork>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>repackage</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>
