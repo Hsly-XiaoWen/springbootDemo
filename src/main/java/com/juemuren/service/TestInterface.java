@@ -6,4 +6,6 @@ package com.juemuren.service;
 public interface TestInterface {
 
     String sayHello();
+
+    void testRetry();
 }
