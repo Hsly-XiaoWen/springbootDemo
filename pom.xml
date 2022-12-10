@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>4.3.4.RELEASE</version>
+            <version>6.0.0</version>
         </dependency>
         <!--引入Actuator监控-->
         <dependency>
